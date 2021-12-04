@@ -2,7 +2,7 @@
 # Author = David Myers
 # Date = December 2020
 # started at 2200 exactly
-with open((__file__.rstrip("code.py")+"sample.txt"), 'r') as input_file:
+with open((__file__.rstrip("code.py")+"input.txt"), 'r') as input_file:
     input = input_file.read().splitlines()
 
 # gamma rate = MOST COMMON BIT IN THE CORRESPONDING POSITION
@@ -54,55 +54,58 @@ def part_1 (input):
     return gamma_dec*epsilon_dec
 
 
-def part_2 (input):
-    gamma = [0]*len(input[0])
-    epsilon = [0]*len(input[0])
+def o2 (input):
     zeros = ones = 0 #count of each bit value in the original binary number position j
     for j in range(0,len(input[0])): #check each bit position
         for i in range(0,len(input)): #check each binary number
-
-            # print(i,j,input[i][j])
-            if int(input[i][j])==0: ones +=1
+            if int(input[i][j])==1: ones +=1
             else: zeros +=1
-        # print(j)
-        if ones > zeros: #now, if there are more 1s than 0s we need to trim the input, and recurse.
-            # I've got to figure out how to remove list items from the input by checking
-            # their value at the current bit position (j) but it looks like j  is already at 1
-            # when it hits this if; though I expected it to still be at 0.
-            print(input)
-            print(j)
+        # print(ones,zeros)
+        o2_input = []
+        if ones >= zeros:
             for each in input:
-                print(each,each[j])
-                if each[j] != 1:
-                    a=input.remove(each)
-            part_2(a)
-
-            # input = [item for item in input if int(input[i][j]) ==1]
-            print(input)
-            # epsilon[j]=0
+                if int(each[j]) == 1:
+                    o2_input.append(each)
+            input = o2_input
+            print(o2_input)
         elif zeros > ones:
             for each in input:
-                print(each,each[j])
-                if each[j] != 0:
-                    input.remove(each)
-            # epsilon[j]=1
-
+                if int(each[j]) == 0:
+                    o2_input.append(each)
+            input = o2_input
         zeros = ones = 0
+    o2_dec = int(input[0],2)
+    return o2_dec
 
-    # my dumbass approach to converting a list of 0's and 1's to decimal
-    gamma_dec = 0
-    epsilon_dec = 0
-    j=len(gamma)-1
-    for i in range(0,len(gamma)):
-        gamma_dec += int(gamma[i])*(2**j)
-        epsilon_dec += epsilon[i]*(2**j)
-        j-=1
-
-    return gamma_dec*epsilon_dec
+def co2 (input):
+    zeros = ones = 0 #count of each bit value in the original binary number position j
+    for j in range(0,len(input[0])): #check each bit position
+        for i in range(0,len(input)): #check each binary number
+            if int(input[i][j])==1: ones +=1
+            else: zeros +=1
+        # print(ones,zeros)
+        co2_input = []
+        if zeros <= ones:
+            for each in input:
+                if int(each[j]) == 0:
+                    co2_input.append(each)
+            input = co2_input
+            if len(input)== 1: break
+            print(co2_input)
+        elif ones < zeros:
+            for each in input:
+                if int(each[j]) == 1:
+                    co2_input.append(each)
+            input = co2_input
+            if len(input)== 1: break
+            print(input)
+        zeros = ones = 0
+    co2_dec = int(input[0],2)
+    return co2_dec
 
 
 # print("Part One : "+ str(part_1(input)))
 
 
 
-print("Part Two : "+ str(part_2(input)))
+print("Part Two : "+ str(o2(input)*co2(input)))

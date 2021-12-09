@@ -2,7 +2,7 @@
 # Author = David Myers
 # Date = December 2020
 import numpy as np
-with open((__file__.rstrip("code.py")+"sample.txt"), 'r') as input_file:
+with open((__file__.rstrip("code.py")+"input.txt"), 'r') as input_file:
     input = input_file.read()
 
 input = input.strip().split('\n')
@@ -11,27 +11,33 @@ points = [point.split(',') for line in lines for point in line]
 
 points =[int(coord) for point in points for coord in point]
 
-print(lines)
-print(points)
-x1,x2,y1,y2=[],[],[],[]
+x1s,x2s,y1s,y2s=[],[],[],[]
 
 i=0
-while i+4 < len(points):
-    x1.append(i)
-    y1.append(i+1)
-    x2.append(i+2)
-    y2.append(i+3)
+while i+4 <= len(points):
+    x1s.append(points[i])
+    y1s.append(points[i+1])
+    x2s.append(points[i+2])
+    y2s.append(points[i+3])
     i+=4
-print(x1,x2,y1,y2)
 
+# grid of zeros of biggest x= num_cols by y=num_rows
+grid = np.zeros((max(max(y1s,y2s))+2,max(max(x1s,x2s))+1), dtype=int)
+# grid = np.zeros((1000,1000), dtype=int)
 
+a = np.array([x1s,y1s,x2s,y2s])
+a=a.transpose() #swap rows to cols
+# print(a)
+for line in a:
+    x1,y1,x2,y2 = line[0], line[1], line[2], line[3]
+    if x1==x2:
+        ysmall, ybig = min(y1,y2), max(y1,y2)
+        #assign value at col x for all rows y1 THROUGH y2 (thus the +1)
+        for i in range(ysmall,ybig+1):
+            grid[i][x1] +=1
+    elif y1==y2:
+        xsmall, xbig = min(x1,x2), max(x1,x2)
+        grid[y1][xsmall:xbig+1] +=1
 
-# print(coords1, coords2)
-# for each in input:
-#     print(each)
-
-print("Part One : "+ str(None))
-
-
-
-print("Part Two : "+ str(None))
+danger_points = np.sum(grid >1)
+print('Part 1:' , danger_points)

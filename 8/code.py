@@ -5,15 +5,13 @@ import re
 from collections import defaultdict
 with open((__file__.rstrip("code.py")+"input.txt"), 'r') as input_file:
     input = input_file.read().split('\n')
-    # input = input[:-1] #(this was sooooo annoying that they didn't format the sample like they did the input)
+    # input = input[:-1] #(this was so annoying that they didn't format the sample like they did the input)
     line = [line.split(' | ') for line in input]
     inputs = [input[0].split(' ') for input in line]
     outputs = [x[1].split(' ') for x in line]
     z  = zip(inputs, outputs)
-# digitPatternLengths = {0:6, 1:2, 2:5, 3:5, 4:4, 5:5, 6:6, 7:3, 8:7, 9:6}
-# digitPatternsTrue = {0:'abcefg', 1:'cf', 2:'acdeg', 3:'acdfg', 4:'bcdf', 5:'abdgf', 6:'abdefg', 7:'acf', 8:'abcdefg', 9:'abcdfg'}
-# for key in digitPatternsTrue.keys():
-#         digitPatternsTrue[key] = {str(letter) for letter in digitPatternsTrue[key]}
+
+
 
 def out_value (d,output):
     """
@@ -25,14 +23,11 @@ def out_value (d,output):
     out_value = ''
     for each in output:
         odigit = digitSegmentizer(each)
-        # print(odigit)
         for key_i, value_i in d.items():
-            # print(f'digit to decode: {odigit}\n possible match: {value_i} \n value if matched: {key_i}')
             if value_i == odigit:
-                # print(f'o_digit:{odigit} \nsegment:{value_i} \nresult:{key_i}')
                 out_value +=str(key_i)
-                # print(out_value)
     return out_value
+
 
 
 def digitSegmentizer (input):
@@ -69,16 +64,9 @@ for input, output in z:
             else: d[6] = segments        #6
 
         # digits decoded: find the related output, decode, add to sum
-    # print(input)
-    # print(output)
-    # print(d)
     running_sum+=int(out_value(d,output))
-print(running_sum)
 
-            # running_sum += int(out_value)
-
-# print(running_sum)
-
+# PART1
 uni = 0
 for out in outputs:
     for digit in out:
@@ -86,11 +74,19 @@ for out in outputs:
             uni +=1
 
 print("Part One : "+ str(uni))
-print("Part Two : "+ str(None))
+print("Part Two : "+ str(running_sum))
 
 
 '''
 # determine the segment differences between every digit:
+# I thought this would help me deduce the digit if's - but it wasn't helpful
+
+digitPatternLengths = {0:6, 1:2, 2:5, 3:5, 4:4, 5:5, 6:6, 7:3, 8:7, 9:6}
+digitPatternsTrue = {0:'abcefg', 1:'cf', 2:'acdeg', 3:'acdfg', 4:'bcdf', 5:'abdgf', 6:'abdefg', 7:'acf', 8:'abcdefg', 9:'abcdfg'}
+
+for key in digitPatternsTrue.keys():
+        digitPatternsTrue[key] = {str(letter) for letter in digitPatternsTrue[key]}
+
 for key_i, value_i in digitPatternsTrue.items():
     for key_j, value_j in digitPatternsTrue.items():
         if len(value_i)>len(value_j):

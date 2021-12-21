@@ -1,6 +1,6 @@
 # Advent of code Year 2021 Day 3 solution
 # Author = David Myers
-# Date = December 2020 
+# Date = December 2020
 # started at 2200 exactly
 with open((__file__.rstrip("code.py")+"input.txt"), 'r') as input_file:
     input = input_file.read().splitlines()
@@ -37,9 +37,9 @@ def part_1 (input):
             gamma[j]=0
             epsilon[j]=1
 
-        print(f'ones: {ones}, zeros: {zeros}')
-        print(f'      gamma: {gamma}')
-        print(f'    epsilon: {epsilon}')
+        # print(f'ones: {ones}, zeros: {zeros}')
+        # print(f'      gamma: {gamma}')
+        # print(f'    epsilon: {epsilon}')
         zeros = ones = 0
 
     # my dumbass approach to converting a list of 0's and 1's to decimal
@@ -67,7 +67,7 @@ def o2 (input):
                 if int(each[j]) == 1:
                     o2_input.append(each)
             input = o2_input
-            print(o2_input)
+            # print(o2_input)
         elif zeros > ones:
             for each in input:
                 if int(each[j]) == 0:
@@ -91,20 +91,20 @@ def co2 (input):
                     co2_input.append(each)
             input = co2_input
             if len(input)== 1: break
-            print(co2_input)
+            # print(co2_input)
         elif ones < zeros:
             for each in input:
                 if int(each[j]) == 1:
                     co2_input.append(each)
             input = co2_input
             if len(input)== 1: break
-            print(input)
+            # print(input)
         zeros = ones = 0
     co2_dec = int(input[0],2)
     return co2_dec
 
 
-# print("Part One : "+ str(part_1(input)))
+print("Part One : "+ str(part_1(input)))
 
 
 

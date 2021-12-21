@@ -1,6 +1,6 @@
 # Advent of code Year 2021 Day 5 solution
 # Author = David Myers
-# Date = December 2020 
+# Date = December 2020
 import numpy as np
 
 with open((__file__.rstrip("code.py")+"input.txt"), 'r') as input_file:
@@ -57,6 +57,7 @@ for line in a:
             grid[i][x1] +=1
     elif y1==y2:
         grid[y1][xsmall:xbig+1] +=1
+        ''' comment out the following else condition for solution to part 1'''
     else:
         for x in range(xsmall,xbig+1):
             y = int(slope(x1,y1,x2,y2)*x + b(x1,y1,x2,y2))
@@ -65,4 +66,5 @@ for line in a:
 
 
 danger_points = np.sum(grid >1)
-print(danger_points)
+
+print("Part Two : "+ str(danger_points))

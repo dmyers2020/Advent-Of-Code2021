@@ -1,6 +1,6 @@
 # Advent of code Year 2021 Day 7 solution
 # Author = David Myers
-# Date = December 2020 
+# Date = December 2020
 import pandas as pd
 with open((__file__.rstrip("code.py")+"input.txt"), 'r') as input_file:
     input = input_file.read().strip().split(',')
@@ -38,16 +38,10 @@ for i in range(low, hi):
     for key, val in keyval:
         #mod for part2
         steps = abs(i-key)
-        cost += sumOfSeqInts(steps)*val
+        # cost +=val*steps                  #PART 1 SOLUTION
+        cost += sumOfSeqInts(steps)*val   #PART 2 SOLUTION
 
     if cost < currcost:
         currcost = cost
         currcosti = i
 print(currcost, currcosti)
-
-
-print("Part One : "+ str(None))
-
-
-
-print("Part Two : "+ str(None))

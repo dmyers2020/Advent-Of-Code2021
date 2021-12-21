@@ -1,7 +1,7 @@
 # Advent of code Year 2021 Day 4 solution
 # Author = https://github.com/luisbc92 | https://www.reddit.com/user/TacosAlPastor92/
 # Collaborator = David Myers
-# Date = December 2020 
+# Date = December 2020
 import numpy as np
 
 input = open('Advent Of Code2021/4/input.txt').read()
@@ -39,8 +39,8 @@ for num in draw:
             boards.pop(i)
 
 
-for each in won:
-    print(each)
+# for each in won:
+#     print(each)
 
 print('Part 1:' , result(*won[0]))
 print('Part 2:' , result(*won[-1]))

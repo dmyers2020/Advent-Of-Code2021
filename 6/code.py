@@ -1,6 +1,6 @@
 # Advent of code Year 2021 Day 6 solution
 # Author = David Myers
-# Date = December 2020 
+# Date = December 2020
 import re
 import math
 from collections import defaultdict
@@ -32,6 +32,7 @@ def newRootGenerator (old_root):
     return new_root
 
 for gen in range(256):
+    ''' for part 1 - run this to gen 80, vice 256'''
     root = newRootGenerator(root)
     # print(root)
 

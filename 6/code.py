@@ -1,6 +1,6 @@
 # Advent of code Year 2021 Day 6 solution
 # Author = David Myers
-# Date = December 2020
+# Date = December 2020 
 import re
 import math
 from collections import defaultdict

@@ -1,7 +1,7 @@
 # Advent of code Year 2021 Day 4 solution
 # Author = https://github.com/luisbc92 | https://www.reddit.com/user/TacosAlPastor92/
 # Collaborator = David Myers
-# Date = December 2020
+# Date = December 2020 
 import numpy as np
 
 input = open('Advent Of Code2021/4/input.txt').read()

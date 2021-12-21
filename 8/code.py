@@ -1,6 +1,6 @@
 # Advent of code Year 2021 Day 8 solution
 # Author = David Myers
-# Date = December 2020
+# Date = December 2020 
 import re
 from collections import defaultdict
 with open((__file__.rstrip("code.py")+"input.txt"), 'r') as input_file:

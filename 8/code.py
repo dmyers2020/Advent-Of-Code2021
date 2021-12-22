@@ -74,7 +74,7 @@ for out in outputs:
             uni +=1
 
 print("Part One : "+ str(uni))
-print("Part Two : "+ str(running_sum)) 
+print("Part Two : "+ str(running_sum))
 
 
 '''
